@@ -1,0 +1,28 @@
+version: "3"
+services:
+  redis:
+    image: redis
+
+  db:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    # volumes:
+    #   - "db-data:/var/lib/postgresql/data"
+    #   - "./healthchecks:/healthchecks"
+
+  vote:
+    image: vote
+    ports:
+      - 5000:80
+
+
+  woker:  
+    image: worker
+
+  result:
+    image: result
+    ports:
+      - 5001:80
+ 
